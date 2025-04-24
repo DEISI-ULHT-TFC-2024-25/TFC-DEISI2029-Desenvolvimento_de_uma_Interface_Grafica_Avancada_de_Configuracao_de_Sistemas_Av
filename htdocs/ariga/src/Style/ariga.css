@@ -1,0 +1,773 @@
+/*---------------------------------------------html e body Layout------------------------------------------------------*/
+body,
+html {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background-color:white;
+    overflow: hidden;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+/*------------------------------------------------Backgroung first page---------------------------------------------------*/
+
+.bg {
+    color: white;
+    height: 100%;
+    width: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow-y: scroll;
+}
+
+
+/* -----------------------Style the header -------------------------------------------------------------------------------*/
+header {
+    background-color: rgb(255, 0, 0, 1);
+    font-size: 35px;
+    color: white;
+}
+
+.logo {
+    max-width: 70px;
+    max-height: 70px;
+    vertical-align: middle;
+    text-align: left;
+}
+
+.titulo {
+    vertical-align: middle;
+
+}
+
+.titulostyle {
+    padding: 10px;
+    text-align: center;
+}
+
+/*-------------------------------menu style------------------------------------------------------------------------------------*/
+nav {
+    background: #ccc;
+    padding: 20px;
+}
+
+/* Style the list inside the menu */
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+/*-------------------------------------------blocos texto style------------------------------------------------------------*/
+article {
+    padding: 20px;
+    background-color: #f1f1f1;
+}
+
+/* --------Style the footer------------------------------------------------------------------------------------------------*/
+.footer {
+    background-color: rgb(255, 0, 0, 1);
+    text-align: center;
+    color: white;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.fixed_footer {
+    position: absolute;
+    bottom: 0;
+}
+
+/*-----------------------------------------------------Styles objetos---------------------------------------*/
+
+.alinhamento_texto_direita {
+    text-align: right
+}
+
+.alinhamento_texto_centro {
+    text-align: center;
+}
+
+.alinhamento_texto_esquerda {
+    text-align: left;
+}
+
+.alinhamento_texto_justificado {
+    text-align: justify;
+}
+
+
+.alinhamento_vertical_meio {
+    vertical-align: middle;
+}
+
+.margem_padding_0 {
+    margin: 0;
+    padding: 0;
+}
+
+.fundo_transparente {
+    background-color: transparent;
+}
+
+.link_a:link {
+    text-decoration: none;
+    color: white;
+}
+
+.link_a {
+    color: white;
+}
+
+.link_a:hover {
+    color: black;
+}
+
+.link_a_black:link {
+    text-decoration: none;
+    color: black;
+}
+
+.link_a_black {
+    color: black;
+}
+
+.link_a_black:hover {
+    color: rgb(102, 97, 97);
+}
+
+.largura_100p {
+    width: 100%
+}
+
+.margens_iguais {
+    margin-left: 2vw;
+    margin-right: 2.0vw;
+}
+
+.margem_cima_0_6 {
+    margin-top: 0.6vw;
+}
+
+.arredondamento_3 {
+    border-radius: 3px;
+}
+
+.cor_de_fundo_branco_0_5 {
+    background-color: rgb(255, 255, 255, 0.5);
+}
+
+.quadrado_item_lista {
+    list-style-type: square;
+}
+
+.cor_texto_cinzento1 {
+    color: rgb(68, 68, 68);
+}
+
+.lista {
+    list-style-type: none;
+}
+
+.item_lista::before {
+    content: "❒ ";
+    border-radius: 1ch;
+    margin-inline-end: 1ch;
+}
+
+.sem_border {
+    border: none;
+}
+
+.cursor_ponteiro {
+    cursor: pointer;
+}
+
+
+/*---------------------------------------------resizing layout-----------------------------------------------------------------*/
+
+/* Responsive layout - makes the two columns/boxes stack on top of each other instead of next to each other, on small screens */
+
+
+.row::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+[class*="col-"] {
+    float: left;
+    padding: 2px;
+}
+
+
+/* For mobile phones: */
+[class*="col-"] {
+    width: 100%;
+}
+
+@media only screen and (min-width: 600px) {
+
+    /* For tablets: */
+    .col-s-1bmol {
+        width: 5.00%;
+    }
+
+    .col-s-1 {
+        width: 8.33%;
+    }
+
+    .col-s-2 {
+        width: 16.66%;
+    }
+
+    .col-s-2sus {
+        width: 20.00%;
+    }
+
+    .col-s-3 {
+        width: 25%;
+    }
+
+    .col-s-4 {
+        width: 33.33%;
+    }
+
+    .col-s-5 {
+        width: 41.66%;
+    }
+
+    .col-s-6 {
+        width: 50%;
+    }
+
+    .col-s-7 {
+        width: 58.33%;
+    }
+
+    .col-s-8 {
+        width: 66.66%;
+    }
+
+    .col-s-9 {
+        width: 75%;
+    }
+
+    .col-s-10 {
+        width: 83.33%;
+    }
+
+    .col-s-11 {
+        width: 91.66%;
+    }
+
+    .col-s-12 {
+        width: 100%;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+
+    /* For desktop: */
+    .col-1bmol {
+        width: 5.0%;
+    }
+
+    .col-1 {
+        width: 8.33%;
+    }
+
+    .col-2 {
+        width: 16.66%;
+    }
+
+    .col-2sust {
+        width: 20.00%;
+    }
+
+    .col-3 {
+        width: 25%;
+    }
+
+    .col-4 {
+        width: 33.33%;
+    }
+
+    .col-5 {
+        width: 41.66%;
+    }
+
+    .col-6 {
+        width: 50%;
+    }
+
+    .col-7 {
+        width: 58.33%;
+    }
+
+    .col-8 {
+        width: 66.66%;
+    }
+
+    .col-9 {
+        width: 75%;
+    }
+
+    .col-10 {
+        width: 83.33%;
+    }
+
+    .col-11 {
+        width: 91.66%;
+    }
+
+    .col-12 {
+        width: 100%;
+    }
+}
+
+/*------------------------------------------------Design apps forms---------------------------------------------------*/
+@font-face {
+    font-family: BernardMTCondensed;
+    src: url('BernardMTCondensed.ttf');
+}
+
+@font-face {
+    font-family: Bahnschrift;
+    src: url('Bahnschrift.TTF');
+}
+
+@font-face {
+    font-family: Pakt;
+    src: url('Pakt Condensed.ttf');
+}
+
+.templateform_geral {
+    display: block;
+    background-color: rgba(110, 105, 105, 0.7);
+    border-radius: 10px 10px 10px 10px;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+    padding: 20px 35px;
+}
+
+
+.templateform_geral * {
+    font-family: 'Bahnschrift';
+    letter-spacing: 1px;
+    outline: none;
+    border: none;
+}
+
+.templateform_geral h1 {
+    color: rgb(245, 245, 245);
+    font-size: 42px;
+    font-weight: 700;
+}
+
+.templateform_geral h2 {
+    color: rgb(245, 245, 245);
+    font-size: 33px;
+    font-weight: 700;
+}
+
+.templateform_geral h3 {
+    color: rgb(245, 245, 245);
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.templateform_geral h4 {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.templateform_geral label {
+    color: rgb(245, 245, 245);
+    display: block;
+    margin-top: 15px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.templateform_geral .img1 {
+    display: flex;
+    margin-top: 2%;
+    margin-left: 50%;
+}
+
+.templateform_geral .img_captcha {
+    border-radius: 3px;
+}
+
+
+.templateform_geral input {
+    color: black;
+    height: 30px;
+    background-color: rgba(255, 255, 255, 0.27);
+    border-radius: 3px;
+    padding: 0 5px;
+    margin-top: 8px;
+    font-size: 14px;
+    font-weight: 300;
+    width: 100%;
+}
+
+.templateform_geral input[type='checkbox'] {
+    accent-color: black;
+    -webkit-box-shadow: 0px 0px 0px 1px rgb(8, 8, 8);
+    -moz-box-shadow: 0px 0px 0px 1px rgb(8, 8, 8);
+    box-shadow: 0px 0px 0px 1px rgb(8, 8, 8);
+    width: 26px;
+    height: 26px;
+    border: solid 1px black;
+    margin-top: 10px;
+}
+
+.templateform_geral textarea {
+    color: black;
+    width: 100%;
+    margin-top: 8px;
+    background-color: rgba(255, 255, 255, 0.616);
+    border-radius: 3px;
+}
+
+.templateform_geral select {
+    color: black;
+    height: 30px;
+    background-color: rgba(255, 255, 255, 0.27);
+    border-radius: 3px;
+    padding: 0 5px;
+    margin-top: 8px;
+    font-size: 14px;
+    font-weight: 300;
+    word-wrap: break-word;
+    width: 100%;
+}
+
+.templateform_geral .aviso {
+    color: rgb(107, 197, 224);
+}
+
+.templateform_geral ::placeholder {
+    color: #e5e5e5;
+}
+
+.templateform_geral .botao_f {
+    color: black;
+    background-color: #dddddd;
+    border-radius: 3px;
+    padding: 6px 5px;
+    font-weight: bolder;
+}
+
+.templateform_geral .botao_f:hover {
+    color: #dddddd;
+    background-color: black;
+    cursor: pointer;
+}
+
+.templateform_geral .botao_geral {
+    margin-top: 20px;
+    width: 100%;
+    background-color: #ffffff;
+    color: #080710;
+    padding: 15px 0;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.templateform_geral input:hover {
+    background-color: rgba(255, 255, 255, 0.603);
+}
+
+.templateform_geral .botao_geral:hover {
+    color: white;
+    background-color: rgba(255, 255, 255, 0.47);
+}
+
+.templateform_geral .color_white {
+    color: white;
+}
+
+.templateform_geral input[type="file"]::file-selector-button {
+    border: 2px solid rgba(255, 255, 255, 0.27);
+    border-radius: 0.2em;
+    background-color: rgba(82, 78, 78, 0.7);
+    transition: 1s;
+    margin-top:4px;
+  }
+  
+  .templateform_geral input[type="file"]::file-selector-button:hover {
+    background-color: #080808;
+    border: 2px solid #aa0f0f;
+    color: white;
+  }
+
+.form_inf_geral {
+    width: 100%;
+    font-size: 80%;
+    color: white;
+    background-color: black;
+    background: black;
+    border-radius: 5px 5px 5px 5px;
+    box-sizing: border-box;
+    padding: 0.3em;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.templateform_geral .box_alt_cria_pesq {
+    border-radius: 5px 5px 5px 5px;
+    border: 1px solid white;
+    padding-left: 6px;
+    padding-right: 6px;
+    height: 100%;
+}
+
+.templateform_geral .novoregisto {
+
+    background-color: rgb(255, 255, 255, 0.5);
+    padding: 5px 10px 5px 10px;
+    color: white;
+    border-radius: 3px 3px 3px 3px;
+}
+
+.templateform_geral .novoregisto:hover {
+
+    background-color: grey;
+    cursor: pointer;
+
+}
+
+.templateform_geral .novoregisto:active {
+
+    background-color: black;
+    cursor: pointer;
+
+}
+
+.templateform_geral .margem_b_3px {
+    margin-bottom: 3px;
+}
+
+.templateform_geral .tamanhofonte_3px {
+    font-size: 3px;
+}
+
+.templateform_geral .formatar_espaco_tabela {
+    display: flex;
+    margin-right: 10px;
+    margin-top: 10px;
+    overflow-x: auto;
+}
+
+.templateform_geral .letragrande {
+    text-transform: uppercase;
+}
+
+.templateform_geral .margem_cima30 {
+    margin-top: 30px;
+}
+
+.templateform_geral .resize_vertical {
+    resize: vertical;
+}
+/*------------------------------------------------------------------------------------------------------------------------------------------*/
+.styled-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    background-color: white;
+}
+
+.styled-table thead tr {
+    background-color: rgb(107, 197, 224);
+    color: #ffffff;
+    text-align: left;
+}
+
+.styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+}
+
+.styled-table tbody tr {
+    border-bottom: 1px solid rgb(221, 221, 221);
+    color: gray;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: gray;
+    color: #ffffff;
+}
+
+.styled-table tbody tr:last-of-type {
+    border-bottom: 3px solid rgb(107, 197, 224);
+}
+
+.styled-table tbody tr.active-row {
+    /*font-weight: bold;*/
+    color: black;
+    text-shadow: 1px 0px 0px rgb(117, 117, 111);
+
+}
+
+.styled-table button {
+    border-radius: 16px;
+    padding: 8px 16px;
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+}
+
+.styled-table button:hover {
+    background-color: rgb(63, 60, 60);
+    color: white;
+}
+
+.styled-table .nao_parte_no_espaco {
+    white-space: nowrap;
+}
+
+/*-----------------------------------Controla display mensagens forms operações botões etc-------------------------------------------*/
+
+#form_mensagem_login,
+#login_id {
+    display: none;
+}
+
+.templateform_geral_teste {
+
+    display: block;
+    background-color: rgba(255, 0, 0, 0.4);
+    border-radius: 10px 10px 10px 10px;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+    padding: 20px 35px;
+
+}
+
+/*-----------------------------------Menu principal e seus componentes-------------------------------------------*/
+
+#templatemenu {
+
+    background-color: rgba(255, 0, 0, 1);
+    color: white;
+    height: 100%;
+    backdrop-filter: blur(10px);
+    border-radius: 5px;
+    padding: 20px 15px;
+    text-shadow: 2px 2px black;
+    
+}
+
+.icon g {
+    stroke: rgba(0, 0, 0, 0.5);
+}
+
+.icon rect {
+    fill: green;
+}
+
+.ulmenu {
+    list-style-type: none;
+    margin: 20px;
+    padding: 0px;
+    width: 100%;
+    /*position: fixed;*/
+    overflow: auto;
+}
+
+.limenu {
+    display: block;
+    padding: 8px 16px;
+    text-decoration: none;
+    font-weight: normal;
+}
+
+.limenu:hover {
+    font-weight: bold;
+    font-size: 18px;
+    cursor: pointer;
+    text-shadow: 2px 2px 5px black;
+}
+
+/*-----------------------------------Display-----------------------------------------*/
+#manutencao_tabelas_sistemaid,
+#manutencao_tabelas_sistema_criacao,
+#form_mensagem_manutencao_tabelas_sistema_criacao,
+#form_mensagem_manutencao_tabelas_sistema_alteracao,
+#manutencao_tabelas_sistema_alteracao,
+#form_mensagem_manutencao_tabelas_sistema_pesquisa {
+    display: none;
+}
+
+#gestaoutilizadoresid,
+#gestaoutilizadores_criacao,
+#form_mensagem_gestaoutilizadores_criacao,
+#form_mensagem_gestaoutilizadores_alteracao,
+#gestaoutilizadores_alteracao,
+#form_mensagem_gestaoutilizadores_pesquisa {
+    display: none;
+}
+
+#gestaoperfilid,
+#gestaoperfil_criacao,
+#form_mensagem_gestaoperfil_criacao,
+#form_mensagem_gestaoperfil_alteracao,
+#gestaoperfil_alteracao,
+#form_mensagem_gestaoperfil_pesquisa {
+    display: none;
+}
+
+#gestaoautenticacaoid,
+#gestaoautenticacao_criacao,
+#form_mensagem_gestaoautenticacao_criacao,
+#form_mensagem_gestaoautenticacao_alteracao,
+#gestaoautenticacao_alteracao,
+#form_mensagem_gestaoautenticacao_pesquisa {
+    display: none;
+}
+
+#xmlimportarid,
+#form_mensagem_xmlimportar_pesquisa {
+    display: none;
+}
+
+#xmlexportarid,
+#form_mensagem_xmlexportar_pesquisa {
+    display: none;
+}
+
+#configuraid,
+#configura_criacao,
+#form_mensagem_configura_criacao,
+#form_mensagem_configura_alteracao,
+#configura_alteracao,
+#form_mensagem_configura_pesquisa {
+    display: none;
+}
+
+#visualizaid,
+#visualiza_criacao,
+#form_mensagem_visualiza_criacao,
+#form_mensagem_visualiza_alteracao,
+#visualiza_alteracao,
+#form_mensagem_visualiza_pesquisa {
+    display: none;
+}
+
+
+
