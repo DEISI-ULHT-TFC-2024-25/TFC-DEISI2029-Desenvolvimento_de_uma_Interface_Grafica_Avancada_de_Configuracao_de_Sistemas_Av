@@ -20,6 +20,7 @@ include "Control/inicializa_conteudos_vistas.php";
     <script type="text/javascript" src="src/Vanilla/arigaconst.js"></script>
     <script type="text/javascript" src="src/Vanilla/ariga.js"></script>
     <script type="text/javascript" src="src/Vanilla/ariga_control_gen.js"></script>
+    <script type="text/javascript" src="src/Vanilla/ariga_controla_conf_layout.js"></script>
     <meta property="og:title" content="Sistema ARIGA" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="/app/app.php" />

@@ -676,7 +676,7 @@ class valida_campos_form_gen
 
     public static function valida_tag_texto($caminhotag, $nometag, $nomegrupotag, &$mensagem)
     {
-        if (!isset($caminhotag)) {
+        if (empty($caminhotag)) {
             $mensagem = mensagens::mensagem_xml_tag_n_definida($nometag, $nomegrupotag);
             return 0;
         }
@@ -691,12 +691,12 @@ class valida_campos_form_gen
 
     public static function valida_tag_numero($caminhotag, $nometag, $nomegrupotag, &$mensagem)
     {
-        if (!isset($caminhotag)) {
+        if (empty($caminhotag)) {
             $mensagem = mensagens::mensagem_xml_tag_n_definida($nometag, $nomegrupotag);
             return 0;
         }
 
-        if (!is_numeric(strval($caminhotag))) {
+        if (!is_numeric(intval($caminhotag))) {
             $mensagem = mensagens::mensagem_xml_tag_valor_invalido($nometag, $nomegrupotag);
             return 0;
         }
@@ -706,7 +706,7 @@ class valida_campos_form_gen
 
     public static function valida_tag_boleano($caminhotag, $nometag, $nomegrupotag, &$mensagem)
     {
-        if (!isset($caminhotag)) {
+        if (empty($caminhotag)) {
             $mensagem = mensagens::mensagem_xml_tag_n_definida($nometag, $nomegrupotag);
             return 0;
         }
@@ -721,16 +721,62 @@ class valida_campos_form_gen
 
     public static function valida_atrib_numero($caminhoatrib, $nomeatrib, $nomegrupotag, &$mensagem)
     {
-        if (!isset($caminhoatrib)) {
+        if (empty($caminhoatrib)) {
             $mensagem = mensagens::mensagem_xml_atributo_n_definido($nomeatrib, $nomegrupotag);
             return 0;
         }
 
-        if (!is_numeric(strval($caminhoatrib))) {
+        if (!is_numeric(intval($caminhoatrib))) {
             $mensagem = mensagens::mensagem_xml_atributo_valor_invalido($nomeatrib, $nomegrupotag);
             return 0;
         }
 
         return 1;
+    }
+
+    public static function obtem_id_from_desc_lista($listaarrayphp, $codtabela, $activo, $descproc)
+    {
+        $id = 0;
+        $total = count($listaarrayphp);
+        $encontrou = 0;
+        $i = 0;
+
+        while ($encontrou == 0 && $i < $total) {
+            if ($listaarrayphp[$i]["codtable"] == $codtabela) {
+                if ($listaarrayphp[$i]["activo"] == $activo) {
+                    if ($descproc == $listaarrayphp[$i]["desc"]) {
+                        $id = $listaarrayphp[$i]["id"];
+                        $encontrou = 1;
+                    }
+                }
+            }
+            $i = $i + 1;
+        }
+        return $id;
+    }
+
+    public static function obtem_variosid_from_desc_lista($listaarrayphp, $codtabela, $activo, $descproc)
+    {
+        $listaid = "";
+        $i = 0;
+        $resultfunc = 0;
+
+        if ($descproc == "") return "";
+        $arraydesc = explode(";", $descproc);
+
+        $total = count($arraydesc);
+        if ($total == 0) return "";
+
+        for ($i = 0; $i < $total; $i++) {
+            $resultfunc = self::obtem_id_from_desc_lista($listaarrayphp, $codtabela, $activo, $arraydesc[$i]);
+            if ($resultfunc > 0) {
+                if ($listaid == "") {
+                    $listaid = strval($resultfunc);
+                } else {
+                    $listaid = $listaid . ";" . strval($resultfunc);
+                }
+            }
+        }
+        return $listaid;
     }
 }

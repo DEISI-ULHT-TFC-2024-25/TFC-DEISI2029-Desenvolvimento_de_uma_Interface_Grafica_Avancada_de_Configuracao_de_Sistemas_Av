@@ -263,6 +263,102 @@ class gestao_informacao
         return $ihtmlretorno;
     }
 
+    //-----------------------------------------------------------------------------------------------------------------
+    public function cria_opcoesdd_multiselecao($codtabela, $activo, $id_array_opcoes_dd, $nomelistautilizar, $name)
+    {
+
+        $listaretornar = "";
+        $descresultadoarrayPHP = "";
+        $retorno = 0;
+
+        $ihtmlretorno = $this->getdd($id_array_opcoes_dd);
+
+        if ($ihtmlretorno == "") {
+            $listaretornar = $this->getlistas($nomelistautilizar);
+            $descresultadoarrayPHP = json_decode($listaretornar, true);
+            $retorno = count($descresultadoarrayPHP);
+
+            for ($i = 0; $i < $retorno; $i++) {
+                if ($activo == 'S') {
+                    if ($descresultadoarrayPHP[$i]["codtable"] == $codtabela && $descresultadoarrayPHP[$i]["activo"] == $activo) {
+
+                        //adicionar data-id e data-desc
+
+                        $id = $descresultadoarrayPHP[$i]["id"];
+                        $descricao = $descresultadoarrayPHP[$i]["desc"];
+                        $ihtmlretorno .= "<label><input type=\"checkbox\" name=\"" . $name . "\" value=\"" . $id . "\"> " . $descricao . "</label>";
+                    }
+                } else {
+                    if ($descresultadoarrayPHP[$i]["codtable"] == $codtabela) {
+
+                        $id = $descresultadoarrayPHP[$i]["id"];
+                        $descricao = $descresultadoarrayPHP[$i]["desc"];
+                        $ihtmlretorno .= "<label><input type=\"checkbox\" name=\"" . $name . "\" value=\"" . $id . "\"> " . $descricao . "</label>";
+                    }
+                }
+            }
+            $this->setdd($id_array_opcoes_dd, $ihtmlretorno);
+        }
+
+        return $ihtmlretorno;
+    }
+
+    public function gera_dropdown_multiselecao($nomedropdown, $id, $obrigatorio, $opcoesdd, $label, &$principiodd)
+    {
+        //para alterar
+        $html = "<div class=\"multiselecao\">";
+        $html .= "<button>" . $label . "</button>";
+
+        if ($id != "") {
+            $html .= " id=\"" . $id . "\" data-id = \"\" onchange = \"atualiza_atributo_drop_data_id(this.id);\"";
+        }
+
+        if ($obrigatorio == true) {
+            $html .= " required data-required = \"S\">";
+        } else {
+            $html .= " data-required = \"N\">";
+        }
+        $html .= "<option value=\"0\">-- Selecionar --</option>";
+        $principiodd =  $html;
+        $html .= $opcoesdd;
+        $html .= "</select>";
+        return $html;
+    }
+
+    public function altera_opcoesdd_multiselecao($codtabela, $activo, $id_array_opcoes_dd)
+    {
+        //para alterar
+        $listaretornar = "";
+        $descresultadoarrayPHP = "";
+        $retorno = 0;
+        $ihtmlretorno = "";
+
+        $listaretornar = $this->getlistas("lista_gestaoair_total");
+        $descresultadoarrayPHP = json_decode($listaretornar, true);
+        $retorno = count($descresultadoarrayPHP);
+
+        for ($i = 0; $i < $retorno; $i++) {
+            if ($activo == 'S') {
+                if ($descresultadoarrayPHP[$i]["codtable"] == $codtabela && $descresultadoarrayPHP[$i]["activo"] == $activo) {
+
+                    $id = $descresultadoarrayPHP[$i]["id"];
+                    $descricao = $descresultadoarrayPHP[$i]["desc"];
+                    $ihtmlretorno .= "<option value='" . $id . "' >" . $descricao . "</option>";
+                }
+            } else {
+                if ($descresultadoarrayPHP[$i]["codtable"] == $codtabela) {
+
+                    $id = $descresultadoarrayPHP[$i]["id"];
+                    $descricao = $descresultadoarrayPHP[$i]["desc"];
+                    $ihtmlretorno .= "<option value='" . $id . "' >" . $descricao . "</option>";
+                }
+            }
+        }
+        $this->setdd($id_array_opcoes_dd, $ihtmlretorno);
+
+        return $ihtmlretorno;
+    }
+
     //--------------------------------air--------------------------------------------------------------------------------
 
     public function inicializar_alterar_lista_gestaoair($objdb)
@@ -279,6 +375,7 @@ class gestao_informacao
 
         return 0;
     }
+
 
     public function cria_opcoesdd_gestaoair($codtabela, $activo, $id_array_opcoes_dd)
     {

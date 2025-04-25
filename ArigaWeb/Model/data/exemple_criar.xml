@@ -1,0 +1,94 @@
+<?xml version="1.0" standalone="yes"?>
+<!DOCTYPE xml>
+<configuration id="0">
+    <archname>Architecture 2</archname>
+    <bare>true</bare>
+    <iddebugmonitor>2</iddebugmonitor>
+    <idfpu>3</idfpu>
+    <installrtos>true</installrtos>
+    <posixrtems5>true</posixrtems5>
+    <rtems48i>true</rtems48i>
+    <rtems5>true</rtems5>
+    <idtargetboard>5</idtargetboard>
+    <idarchitecturetype>6</idarchitecturetype>
+    <arinc653module id="0" idconfiguration="0">
+        <modulename>scenario2</modulename>
+        <xmlnsxsi>http://www.w3.org/2001/XMLSchema-instance</xmlnsxsi>
+        <airconfiguration id="0" idarinc653module="0">
+            <requiredcores>4</requiredcores>
+            <tickspersecond>400</tickspersecond>
+        </airconfiguration>
+        <moduleschedule id="0" idarinc653module="0">
+            <initialmoduleschedule>true</initialmoduleschedule>
+            <majorframeseconds>0.35000</majorframeseconds>
+            <scheduleidentifier>2</scheduleidentifier>
+            <schedulename>schedule2</schedulename>
+            <partitionschedule id="0" idmoduleschedule="0">
+                <perioddurationseconds>0.35000</perioddurationseconds>
+                <periodseconds>0.35000</periodseconds>
+                <windowschedule id="0" idpartitionschedule="0" idpartitionconfiguration="1">
+                    <partitionperiodstart>true</partitionperiodstart>
+                    <windowdurationseconds>0.25000</windowdurationseconds>
+                    <windowidentifier>2</windowidentifier>
+                    <windowstartseconds>0.00000</windowstartseconds>
+                    <coreidentifier>1</coreidentifier>
+                </windowschedule>
+                <windowconfiguration id="0" idpartitionschedule="0">
+                    <windowidentifier>2</windowidentifier>
+                    <cores>2</cores>
+                </windowconfiguration>
+            </partitionschedule>
+            <partitionschedule id="0" idmoduleschedule="0">
+                <perioddurationseconds>0.04500</perioddurationseconds>
+                <periodseconds>0.45000</periodseconds>
+                <windowschedule id="0" idpartitionschedule="0" idpartitionconfiguration="2">
+                    <partitionperiodstart>true</partitionperiodstart>
+                    <windowdurationseconds>0.45000</windowdurationseconds>
+                    <windowidentifier>3</windowidentifier>
+                    <windowstartseconds>1.00000</windowstartseconds>
+                    <coreidentifier>1</coreidentifier>
+                </windowschedule>
+                <windowconfiguration id="0" idpartitionschedule="0">
+                    <windowidentifier>3</windowidentifier>
+                    <cores>3</cores>
+                </windowconfiguration>
+            </partitionschedule>
+        </moduleschedule>
+        <partitions id="0" idarinc653module="0">
+            <criticality>7</criticality>
+            <entrypoint>entrypoint2</entrypoint>
+            <partitionname>p2</partitionname>
+            <partitionidentifier>2</partitionidentifier>
+            <systempartition>false</systempartition>
+            <partitionconfiguration id="0" idpartition="0">
+                <cores>2</cores>
+                <cache>CODE; DATA</cache>
+                <libs>14;15</libs>
+                <personality>8</personality>
+                <devices>1</devices>
+                <permissions>9;10;11</permissions>
+                <memory id="0" idpartitionconfiguration="0">
+                    <size>0x200000</size>
+                </memory>
+            </partitionconfiguration>
+        </partitions>
+        <partitions id="0" idarinc653module="0">
+            <criticality>7</criticality>
+            <entrypoint>entrypoint3</entrypoint>
+            <partitionname>p3</partitionname>
+            <partitionidentifier>3</partitionidentifier>
+            <systempartition>false</systempartition>
+            <partitionconfiguration id="0" idpartition="0">
+                <cores>3</cores>
+                <cache>CODE; DATA</cache>
+                <libs>14;15</libs>
+                <personality>8</personality>
+                <devices>1</devices>
+                <permissions>9;10;11;12</permissions>
+                <memory id="0" idpartitionconfiguration="0">
+                    <size>0x300000</size>
+                </memory>
+            </partitionconfiguration>
+        </partitions>
+    </arinc653module>
+</configuration>

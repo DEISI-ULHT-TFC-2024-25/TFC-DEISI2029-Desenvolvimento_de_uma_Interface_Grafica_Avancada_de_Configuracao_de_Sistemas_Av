@@ -30,8 +30,28 @@ class GconexaoBD
         "alteraperfilutilizador" => "select * from  alteraperfilutilizador('%d', '%d', '%d')",
         "alterautenticacao" => "select * from  alterautenticacao('%d', '%d', '%s')",
         "obtemlista_gestaoair_total" => "SELECT * from obtemlista_gestaoair_total('')",
-        "obtemlista_gestaoair_total" => "SELECT * from obtemlista_gestaoair_total('')",
-        "geraxml" => "CREATE OR REPLACE FUNCTION public.geraxml('%s,%s')"
+        "altera_configuration" => "SELECT * from altera_configuration('%d', '%s', '%s', '%d', '%d', '%s', '%s', '%s', '%s', '%d', '%d', '%s','%d')",
+        "cria_configuration" => "SELECT * from cria_configuration('%s', '%s', '%d', '%d', '%s', '%s', '%s', '%s', '%d', '%d', '%d')",
+        "altera_arinc653module" => "SELECT * from altera_arinc653module('%d', '%s', '%s', '%d', '%s', '%d')",
+        "cria_arinc653module" => "SELECT * from cria_arinc653module('%s', '%s', '%d', '%d')",
+        "altera_airconfiguration" => "SELECT * from altera_airconfiguration('%d', '%d', '%d', '%d', '%s', '%d')",
+        "cria_airconfiguration" => "SELECT * from cria_airconfiguration('%d', '%d', '%d', '%d')",
+        "altera_partitions" => "SELECT * from altera_partitions('%d', '%d', '%s', '%d', '%s', '%s', '%d', '%s', '%d')",
+        "cria_partitions" => "SELECT * from cria_partitions('%d', '%s', '%d', '%s', '%s', '%d', '%d')",
+        "altera_partitionconfiguration" => "SELECT * from altera_partitionconfiguration('%d', '%s', '%d', '%s', '%s', '%s', '%s', '%d', '%s', '%d')",
+        "cria_partitionconfiguration" => "SELECT * from cria_partitionconfiguration('%s', '%d', '%s', '%s', '%s', '%s', '%d', '%d')",
+        "altera_memory" => "SELECT * from altera_memory('%d', '%s', '%d', '%s', '%d')",
+        "cria_memory" => "SELECT * from cria_memory('%s', '%d', '%d')",
+        "altera_moduleschedule" => "SELECT * from altera_moduleschedule('%d', '%s', '%s', '%d', '%s', '%d', '%s', '%d')",
+        "cria_moduleschedule" => "SELECT * from cria_moduleschedule('%s', '%s', '%d', '%s', '%d', '%d')",
+        "altera_partitionschedule" => "SELECT * from altera_partitionschedule('%d', '%s', '%s', '%d', '%s', '%d')",
+        "cria_partitionschedule" => "SELECT * from cria_partitionschedule('%s', '%s', '%d', '%d')",
+        "altera_windowconfiguration" => "SELECT * from altera_windowconfiguration('%d', '%d', '%d', '%d', '%s', '%d')",
+        "cria_windowconfiguration" => "SELECT * from cria_windowconfiguration('%d', '%d', '%d', '%d')",
+        "altera_windowschedule" => "SELECT * from altera_windowschedule('%d', '%s', '%s', '%d', '%s', '%d','%d', '%d', '%s', '%d')",
+        "cria_windowschedule" => "SELECT * from cria_windowschedule('%s', '%s', '%d', '%s', '%d','%d', '%d', '%d')",
+        "geraxml" => "SELECT * from geraxml('%d', '%d')",
+        "geraxml_withdesc" => "SELECT * from geraxml_withdesc('%d', '%d')"
 
     );
 
