@@ -18,7 +18,6 @@ class definemenu
         $this->cria_entrada_menu_principal(1);
         $this->cria_entrada_menu_principal(2);
         $this->cria_entrada_menu_principal(3);
-        $this->cria_entrada_menu_principal(4);
     }
 
     public function cria_entrada_menu_principal($num_menu)

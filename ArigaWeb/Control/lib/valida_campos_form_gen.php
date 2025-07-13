@@ -40,6 +40,17 @@ class valida_campos_form_gen
         }
     }
 
+    public static function valida_numero_indice($valorvalidar, $designacao, &$descres)
+    {
+
+        if (is_numeric($valorvalidar)) {
+            return 1;
+        } else {
+            $descres = $designacao . ': Não é um número.';
+            return 0;
+        }
+    }
+
     public static function valida_numero_n($valorvalidar, $designacao, $validalimites, $limiteinferior, $limitesuperior, &$descres)
     {
         $convnum = 0;
@@ -778,5 +789,127 @@ class valida_campos_form_gen
             }
         }
         return $listaid;
+    }
+
+    public static function valida_boleano($valorvalidar, $designacao, &$descres)
+    {
+        if ($valorvalidar == 'true' || $valorvalidar == 'false') {
+            return 1;
+        } else {
+            $descres = $designacao . ': Valor inválido. Não é um valor booleano.';
+            return 0;
+        }
+    }
+
+    public static function valida_multiselection($valorvalidar, $designacao,  $codtabela, $activo, $listaarrayphp, &$descres)
+    {
+        $total = 0;
+        $encontrou_id_inexistente = 0;
+        $i = 0;
+
+        if ($valorvalidar == '') {
+            $descres = $designacao . ': Valor inválido. Não preencheu nenhuma opção.';
+            return 0;
+        } else {
+            $arrayid = explode(";", $valorvalidar);
+            $total = count($arrayid);
+            if ($total == 0) {
+                $descres = $designacao . ': Valor inválido. Não preencheu opções.';
+                return 0;
+            }
+            while ($encontrou_id_inexistente == 0 && $i < $total) {
+                if (self::valida_multiselection_id($listaarrayphp, $codtabela, $activo, $arrayid[$i]) < 1) {
+                    $encontrou_id_inexistente = 1;
+                };
+                $i++;
+            }
+
+            if ($encontrou_id_inexistente == 1) {
+                $descres = $designacao . ': Existem opções inválidas inseridas.';
+                return 0;
+            } else {
+                return 1;
+            }
+        }
+    }
+
+    public static function valida_multiselection_id($listaarrayphp, $codtabela, $activo, $idproc)
+    {
+
+        $total = count($listaarrayphp);
+        $encontrou = 0;
+        $i = 0;
+
+        while ($encontrou == 0 && $i < $total) {
+            if ($listaarrayphp[$i]["codtable"] == $codtabela) {
+                if ($listaarrayphp[$i]["activo"] == $activo) {
+                    if ($idproc == $listaarrayphp[$i]["id"]) {
+                        $encontrou = 1;
+                    }
+                }
+            }
+            $i = $i + 1;
+        }
+        return $encontrou;
+    }
+
+    public static function valida_texto_all($valorvalidar, $designacao, $formato, $validalimites, $tamanhoinf, $tamanhosup, &$descres)
+    {
+
+        $tamanhotexto = 0;
+
+        if (empty($valorvalidar)) {
+            $descres = $designacao . ': Não preenchido.';
+            return 0;
+        }
+        if ($formato !== "") {
+            if (!preg_match_all($formato, $valorvalidar)) {
+                $descres = $designacao . ': Formato inválido.';
+                return 0;
+            }
+        }
+
+        if ($validalimites) {
+            $tamanhotexto = strlen($valorvalidar);
+
+            if (!is_null($tamanhoinf)) {
+                if ($tamanhotexto < $tamanhoinf) {
+                    $descres = $designacao . ': Tamanho inválido.';
+                    return 0;
+                }
+            }
+            if (!is_null($tamanhosup)) {
+                if ($tamanhotexto > $tamanhosup) {
+                    $descres = $designacao . ': Tamanho inválido.';
+                    return 0;
+                }
+            }
+        }
+        return 1;
+    }
+
+    public static function devolve_indice_array_partition($idpartionconfiguration, $objpartitions)
+    {
+
+        $partitions_count = 0;
+        $i = 0;
+        $encountrou = 0;
+        $partitions_count = count($objpartitions);
+
+        if ($partitions_count == 0) return -1;
+
+        while ($i < $partitions_count && $encountrou == 0) {
+
+            if ($objpartitions[$i]['partitionconfiguration_obj']['id'] == $idpartionconfiguration) {
+                $encountrou = 1;
+            } else {
+                $i++;
+            }
+        }
+
+        if ($encountrou == 1) {
+            return $i;
+        }
+        return -1;
     }
 }

@@ -51,8 +51,10 @@ class GconexaoBD
         "altera_windowschedule" => "SELECT * from altera_windowschedule('%d', '%s', '%s', '%d', '%s', '%d','%d', '%d', '%s', '%d')",
         "cria_windowschedule" => "SELECT * from cria_windowschedule('%s', '%s', '%d', '%s', '%d','%d', '%d', '%d')",
         "geraxml" => "SELECT * from geraxml('%d', '%d')",
-        "geraxml_withdesc" => "SELECT * from geraxml_withdesc('%d', '%d')"
-
+        "geraxml_withdesc" => "SELECT * from geraxml_withdesc_v2('%d', '%d')",
+        "delete_partitions" => "SELECT * from delete_partitions('%d', '%d')",
+        "delete_partitionschedule" => "SELECT * from delete_partitionschedule('%d', '%d')",
+        "delete_windowschedule" => "SELECT * from delete_windowschedule('%d', '%d')"
     );
 
     public static function criarconexaoBD(&$idmensagem, &$conexao)

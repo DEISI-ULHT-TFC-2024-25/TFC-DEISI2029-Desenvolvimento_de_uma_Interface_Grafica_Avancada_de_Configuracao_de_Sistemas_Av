@@ -264,68 +264,132 @@ class gestao_informacao
     }
 
     //-----------------------------------------------------------------------------------------------------------------
-    public function cria_opcoesdd_multiselecao($codtabela, $activo, $id_array_opcoes_dd, $nomelistautilizar, $name)
+    public function cria_opcoesdd_multiselecao($codtabela, $activo, $id_array_opcoes_multiselecao, $id_multiselecao)
     {
 
         $listaretornar = "";
         $descresultadoarrayPHP = "";
         $retorno = 0;
 
-        $ihtmlretorno = $this->getdd($id_array_opcoes_dd);
+        $ihtmlretorno = $this->getdd($id_array_opcoes_multiselecao);
 
         if ($ihtmlretorno == "") {
-            $listaretornar = $this->getlistas($nomelistautilizar);
+            $listaretornar = $this->getlistas("lista_sistema_total");
             $descresultadoarrayPHP = json_decode($listaretornar, true);
             $retorno = count($descresultadoarrayPHP);
+
+            $ihtmlretorno = " <div class=\"multiselecao-content\">";
 
             for ($i = 0; $i < $retorno; $i++) {
                 if ($activo == 'S') {
                     if ($descresultadoarrayPHP[$i]["codtable"] == $codtabela && $descresultadoarrayPHP[$i]["activo"] == $activo) {
 
-                        //adicionar data-id e data-desc
-
                         $id = $descresultadoarrayPHP[$i]["id"];
                         $descricao = $descresultadoarrayPHP[$i]["desc"];
-                        $ihtmlretorno .= "<label><input type=\"checkbox\" name=\"" . $name . "\" value=\"" . $id . "\"> " . $descricao . "</label>";
+
+                        $ihtmlretorno .= "<label><input type=\"checkbox\" data-id=\"" . $id . "\" name=\"" . $id_multiselecao . "_chk\" value=\"" . $descricao . "\" onclick = \"control_tabs.atualiza_atributo_multiselecao_datalabel('" . $id_multiselecao . "');\">" . $descricao . "</label>";
                     }
                 } else {
                     if ($descresultadoarrayPHP[$i]["codtable"] == $codtabela) {
 
                         $id = $descresultadoarrayPHP[$i]["id"];
                         $descricao = $descresultadoarrayPHP[$i]["desc"];
-                        $ihtmlretorno .= "<label><input type=\"checkbox\" name=\"" . $name . "\" value=\"" . $id . "\"> " . $descricao . "</label>";
+                        $ihtmlretorno .= "<label><input type=\"checkbox\" data-id=\"" . $id . "\" name=\"" . $id_multiselecao . "_chk\" value=\"" . $descricao . "\" onclick = \"control_tabs.atualiza_atributo_multiselecao_datalabel('" . $id_multiselecao . "');\">" . $descricao . "</label>";
                     }
                 }
             }
-            $this->setdd($id_array_opcoes_dd, $ihtmlretorno);
+
+            $ihtmlretorno .= "</div>";
+
+            $this->setdd($id_array_opcoes_multiselecao, $ihtmlretorno);
         }
 
         return $ihtmlretorno;
     }
 
-    public function gera_dropdown_multiselecao($nomedropdown, $id, $obrigatorio, $opcoesdd, $label, &$principiodd)
+    //-----------------------------------------------------------------------------------------------------------------
+    public function cria_opcoesdd_multiselecao_sem_guardar($codtabela, $activo, $id_multiselecao)
+    {
+
+        $listaretornar = "";
+        $descresultadoarrayPHP = "";
+        $retorno = 0;
+
+
+        $listaretornar = $this->getlistas("lista_sistema_total");
+        $descresultadoarrayPHP = json_decode($listaretornar, true);
+        $retorno = count($descresultadoarrayPHP);
+
+        $ihtmlretorno = " <div class=\"multiselecao-content\">";
+
+        for ($i = 0; $i < $retorno; $i++) {
+            if ($activo == 'S') {
+                if ($descresultadoarrayPHP[$i]["codtable"] == $codtabela && $descresultadoarrayPHP[$i]["activo"] == $activo) {
+
+                    $id = $descresultadoarrayPHP[$i]["id"];
+                    $descricao = $descresultadoarrayPHP[$i]["desc"];
+
+                    $ihtmlretorno .= "<label><input type=\"checkbox\" data-id=\"" . $id . "\" name=\"" . $id_multiselecao . "_chk\" value=\"" . $descricao . "\" onclick = \"control_tabs.atualiza_atributo_multiselecao_datalabel('" . $id_multiselecao . "');\">" . $descricao . "</label>";
+                }
+            } else {
+                if ($descresultadoarrayPHP[$i]["codtable"] == $codtabela) {
+
+                    $id = $descresultadoarrayPHP[$i]["id"];
+                    $descricao = $descresultadoarrayPHP[$i]["desc"];
+                    $ihtmlretorno .= "<label><input type=\"checkbox\" data-id=\"" . $id . "\" name=\"" . $id_multiselecao . "_chk\" value=\"" . $descricao . "\" onclick = \"control_tabs.atualiza_atributo_multiselecao_datalabel('" . $id_multiselecao . "');\">" . $descricao . "</label>";
+                }
+            }
+        }
+
+        $ihtmlretorno .= "</div>";
+
+        return $ihtmlretorno;
+    }
+
+
+    public function gera_dropdown_multiselecao_sem_guardar($id_multiselecao, $obrigatorio, $opcoesdd, $label)
     {
         //para alterar
         $html = "<div class=\"multiselecao\">";
-        $html .= "<button>" . $label . "</button>";
-
-        if ($id != "") {
-            $html .= " id=\"" . $id . "\" data-id = \"\" onchange = \"atualiza_atributo_drop_data_id(this.id);\"";
-        }
+        $html .= "<label><span class=\"aviso\">*</span><b>" . $label . "</b></label>";
+        $html .= "<input type=\"text\" disabled id=\"" .  $id_multiselecao . "_label\" class=\"labelspecial\"";
 
         if ($obrigatorio == true) {
-            $html .= " required data-required = \"S\">";
+            $html .= " data-required = \"S\"";
         } else {
-            $html .= " data-required = \"N\">";
+            $html .= " data-required = \"N\"";
         }
-        $html .= "<option value=\"0\">-- Selecionar --</option>";
-        $principiodd =  $html;
+
+        $html .= ">";
+
         $html .= $opcoesdd;
-        $html .= "</select>";
+        $html .= "</div>";
         return $html;
     }
 
-    public function altera_opcoesdd_multiselecao($codtabela, $activo, $id_array_opcoes_dd)
+    public function gera_dropdown_multiselecao($id_multiselecao, $obrigatorio, $opcoesdd, $label, &$principiodd)
+    {
+        //para alterar
+        $html = "<div class=\"multiselecao\">";
+        $html .= "<label><span class=\"aviso\">*</span><b>" . $label . "</b></label>";
+        $html .= "<input type=\"text\" disabled id=\"" .  $id_multiselecao . "_label\" class=\"labelspecial\"";
+
+        if ($obrigatorio == true) {
+            $html .= " data-required = \"S\"";
+        } else {
+            $html .= " data-required = \"N\"";
+        }
+
+        $html .= ">";
+        $principiodd =  $html;
+
+        $html .= $opcoesdd;
+        $html .= "</div>";
+        return $html;
+    }
+
+
+    public function altera_opcoesdd_multiselecao($codtabela, $activo, $id_array_opcoes_multiselecao, $id_multiselecao)
     {
         //para alterar
         $listaretornar = "";
@@ -333,7 +397,7 @@ class gestao_informacao
         $retorno = 0;
         $ihtmlretorno = "";
 
-        $listaretornar = $this->getlistas("lista_gestaoair_total");
+        $listaretornar = $this->getlistas("lista_sistema_total");
         $descresultadoarrayPHP = json_decode($listaretornar, true);
         $retorno = count($descresultadoarrayPHP);
 
@@ -343,18 +407,18 @@ class gestao_informacao
 
                     $id = $descresultadoarrayPHP[$i]["id"];
                     $descricao = $descresultadoarrayPHP[$i]["desc"];
-                    $ihtmlretorno .= "<option value='" . $id . "' >" . $descricao . "</option>";
+                    $ihtmlretorno .= "<label><input type=\"checkbox\" data-id=\"" . $id . "\" name=\"" . $id_multiselecao . "_chk\" value=\"" . $descricao . "\" onclick = \"atualiza_atributo_multiselecao_datalabel('" . $id_multiselecao . "_label');\">" . $descricao . "</label>";
                 }
             } else {
                 if ($descresultadoarrayPHP[$i]["codtable"] == $codtabela) {
 
                     $id = $descresultadoarrayPHP[$i]["id"];
                     $descricao = $descresultadoarrayPHP[$i]["desc"];
-                    $ihtmlretorno .= "<option value='" . $id . "' >" . $descricao . "</option>";
+                    $ihtmlretorno .= "<label><input type=\"checkbox\" data-id=\"" . $id . "\" name=\"" . $id_multiselecao . "_chk\" value=\"" . $descricao . "\" onclick = \"atualiza_atributo_multiselecao_datalabel('" . $id_multiselecao . "_label');\">" . $descricao . "</label>";
                 }
             }
         }
-        $this->setdd($id_array_opcoes_dd, $ihtmlretorno);
+        $this->setdd($id_array_opcoes_multiselecao, $ihtmlretorno);
 
         return $ihtmlretorno;
     }
@@ -389,6 +453,9 @@ class gestao_informacao
         if ($ihtmlretorno == "") {
             $listaretornar = $this->getlistas("lista_gestaoair_total");
             $descresultadoarrayPHP = json_decode($listaretornar, true);
+
+            if (!isset($descresultadoarrayPHP)) return "";
+
             $retorno = count($descresultadoarrayPHP);
 
             for ($i = 0; $i < $retorno; $i++) {

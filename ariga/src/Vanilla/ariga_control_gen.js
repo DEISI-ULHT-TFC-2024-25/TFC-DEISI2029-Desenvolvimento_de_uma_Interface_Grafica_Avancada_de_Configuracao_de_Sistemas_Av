@@ -100,24 +100,37 @@ class controlavistas{
         let codigodd = "";
         let htmlddheader = "";
         let htmlddfinal = "";
+        let codigoddmulti = "";
     
         for (count = 0; count < objbyclass.length; count++) {
     
             codactivo = objbyclass[count].getAttribute('data-activo');
+            codigoddmulti = objbyclass[count].getAttribute('data-multi');
             codigodd = objbyclass[count].getAttribute('data-dd');
             
             //alert(codigodd);    
             //alert(codactivo); 
-
+            
             htmlddheader = this.getdd(codigodd);
             htmlddfinal = htmlddheader;
-            if (codactivo == "N"){
-                htmlddfinal = htmlddfinal + lista_total + "</select>";
-            }else{
-                htmlddfinal = htmlddfinal + lista_activa + "</select>";
-            }
-            //alert(htmlddfinal); 
 
+            if (codigoddmulti !== 'S') {
+
+                if (codactivo == "N"){
+                    htmlddfinal = htmlddfinal + lista_total + "</select>";
+                }else{
+                    htmlddfinal = htmlddfinal + lista_activa + "</select>";
+                }
+                //alert(htmlddfinal); 
+            }else{
+
+                if (codactivo == "N"){
+                    htmlddfinal = htmlddfinal + lista_total + "</div>";
+                }else{
+                    htmlddfinal = htmlddfinal + lista_activa + "</div>";
+                }
+                //alert(htmlddfinal); 
+            }    
             objbyclass[count].innerHTML = htmlddfinal;
         }
 

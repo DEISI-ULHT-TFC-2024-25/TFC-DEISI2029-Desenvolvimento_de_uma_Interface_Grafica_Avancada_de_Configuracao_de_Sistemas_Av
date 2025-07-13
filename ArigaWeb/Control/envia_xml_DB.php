@@ -27,7 +27,6 @@ if (isset($_POST["xml_config"])) {
 $idautenticacao = $_SESSION['IDAUTENTICACAO'];
 // $idautenticacao = 1;
 
-
 //Valida XML----------------------------------------
 $parser = xml_parser_create();
 if (!xml_parse($parser, $xmlstr, true)) {

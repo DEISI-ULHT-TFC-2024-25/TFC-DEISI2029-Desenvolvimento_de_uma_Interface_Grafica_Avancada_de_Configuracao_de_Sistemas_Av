@@ -58,7 +58,9 @@ function envia_recebe_gen_universal_POST(nome_form, funcvalidacaocampos, nome_ge
             if (ajax_envio.status != 200) {
                 alert("Erro no servidor! Status: " + ajax_envio.status + " ReadyState: " + ajax_envio.readyState);
             }
-            document.getElementById(botao_ele_submit).disabled = false;
+            if(botao_ele_submit != 'sem_botao'){
+                document.getElementById(botao_ele_submit).disabled = false;
+            }    
         }
     }
 }
